@@ -36,7 +36,7 @@ Welcome to my submission for **Software Task #1** from the MaRS Recruitment Team
 │   ├── medium_1.c
 │   ├── medium_2.c
 │   └── medium_3.c
-├── screenshots/           # Git command usage proof
+├── Screenshot_Mars/           # Git command usage proof
 ├── README.md
 
 
