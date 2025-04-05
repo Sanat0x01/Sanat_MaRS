@@ -14,7 +14,7 @@ Welcome to my submission for **Software Task #1** from the MaRS Recruitment Team
 - 📐 **Camera coordinate correction** – Calculated object position after correcting misalignment.
 - 📡 **Morse code decoding** – Interpreted signals and decoded into plain text.
 - 🔐 **Encryption of message** – Decrypted the rover's encoded messages.
-
+- 🔬 **Applying Median Filter** - Reading sensor values from a file and filtering it.
 ---
 
 ## 💡 Technologies Used
@@ -35,7 +35,8 @@ Welcome to my submission for **Software Task #1** from the MaRS Recruitment Team
 ├── Medium_Dose/
 │   ├── medium_1.c
 │   ├── medium_2.c
-│   └── medium_3.c
+│   ├── medium_3.c
+│   └── medium_4.c
 ├── Screenshot_Mars/           # Git command usage proof
 ├── README.md
 
