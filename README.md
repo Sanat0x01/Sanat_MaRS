@@ -10,11 +10,17 @@ Welcome to my submission for **Software Task #1** from the MaRS Recruitment Team
 ### ✅ Light Dose
 - Ubuntu commands and bash scripting (converted logic to C)
 
-### ✅ Medium Dose (Partially Completed)
+### ✅ Medium Dose 
 - 📐 **Camera coordinate correction** – Calculated object position after correcting misalignment.
 - 📡 **Morse code decoding** – Interpreted signals and decoded into plain text.
 - 🔐 **Encryption of message** – Decrypted the rover's encoded messages.
 - 🔬 **Applying Median Filter** - Reading sensor values from a file and filtering it.
+- 💻 **Conversion Code** - Conversion of message for communication between Martian and MaRSians.
+
+### ✅ Hard Dose 
+- 📐 **Obstacle Detection** – Reads obstacle data from a file and generates a visual map of an arena, marking obstacles and safe positions based on relative directions.
+- 📡 **Behaviour Tree Structure** – Checks battery status first, then handles movement and obstacle avoidance
+
 ---
 
 ## 💡 Technologies Used
@@ -36,7 +42,11 @@ Welcome to my submission for **Software Task #1** from the MaRS Recruitment Team
 │   ├── medium_1.c
 │   ├── medium_2.c
 │   ├── medium_3.c
-│   └── medium_4.c
+│   ├── medium_4.c
+│   └── medium_5.c
+├── Hard_Dose/
+│   ├── rover_brick.c
+│   ├── hard_3.sh
 ├── Screenshot_Mars/           # Git command usage proof
 ├── README.md
 
@@ -104,6 +114,18 @@ echo
 **Fourth Medium Dose Program**
 
 - I  built this program to clean up messy sensor data from a file called log.txt. First, I set up a median filter—a common technique for smoothing out noise. The filter works by taking small chunks of data (3 values at a time), sorting them, and picking the middle value to remove extreme spikes. I used bubble sort because it’s simple and works fine for small groups of numbers. The program reads the raw sensor values, applies the filter, and then prints the cleaned-up results. This helps make the data more reliable by removing random jumps while keeping the real trends intact—just like how noise-canceling headphones block out static but keep the music clear.
+
+  **Fifth Medium Dose Program**
+
+  -To solve this problem, I started by asking the user to input the roll, pitch, and yaw angles in degrees, since these represent rotations around the X, Y, and Z axes respectively. Since trigonometric functions in C work with radians, I created a toRadians function to convert the input values. After that, I calculated the cosine and sine values of half-angles for each of the three rotations—this is a standard part of converting Euler angles to a quaternion. Once I had all the trigonometric components, I used the quaternion formula to compute the values of w, x, y, and z. Finally, I printed out the quaternion values with 6 decimal precision to show the result in the Martian rotation system. This approach ensures that 3D orientation is accurately represented using quaternions instead of Euler angles, which can sometimes cause gimbal lock.
+
+  **First Hard Dose Program**
+
+  -To solve this problem, I began by prompting the user to input the filename that contains the obstacle data. I then opened the file and used fscanf to read each obstacle’s directional distances—north, east, south, and west—storing them in a 2D array. While reading the file, I simultaneously tracked the maximum distance to determine the appropriate arena size, which I calculated as 2 * max + 1 to account for movement in all directions from a central point. After initializing the entire arena with safe positions marked as 1, I determined the center and used the obstacle data to calculate each obstacle’s position relative to that center. I marked those positions in the arena as 0 to indicate obstacles. Finally, I printed the entire arena grid, using X for obstacles and . for safe zones, so the user could clearly visualize the layout.
+
+  **Third Hard Dose Program**
+
+  -To design the behaviour tree for the robot, I started by identifying the two main priorities: battery status and navigation. I used a Selector node at the root, since the robot should choose the first successful branch it can execute. For the first branch, I created a Battery Check Selector which allows the robot to react based on how critical the battery level is. If the battery is below 20%, the robot must immediately return to base. If it's low but not critical (between 20% and 50%), I decided it should conserve power by turning off non-essential systems like cameras. Otherwise, if the battery is above 50%, it proceeds with normal operation. Once battery safety is ensured, the second branch handles Navigation using a Sequence node, because each step must be performed in order. The robot attempts to move forward, and if it detects an obstacle, it checks the size. If it’s small, it just slightly changes direction and continues. But if it’s a large obstacle, it either stops or chooses an alternate route. 
   
 ---
 
