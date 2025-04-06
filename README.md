@@ -131,7 +131,6 @@ echo
 
 ## ✍️ Future Work
 
-- Take on the Hard Dose challenges.
 - Editing code for performance improvements.
 
 ---
